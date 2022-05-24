@@ -1,15 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class burn_script : MonoBehaviour
 {
     // Start is called before the first frame update
-
-    public float speed = 0.001f;
-    public float dissolveSpeed = 0.001f;
+    public float speed = 1f;
+    public float dissolveSpeed = 1f;
     public float dissolve_threshold = 0.75f;
-    public Renderer renderer;
+    
     private float burn_amount;
     private float burn_default;
     private float dissolve_amount;
@@ -20,40 +18,76 @@ public class burn_script : MonoBehaviour
     [SerializeField] Material burningMat;
     private Material lastDefaultMat;
 
+    //Texture Components
     private Color object_color;
+    private Texture object_tex;
+    private Texture normal_tex;
+    private float metallic;
+    private float smoothness;
+
+
+    //more than one object
+    private List<Transform> parts = new List<Transform>();
+    private Renderer[] renderer;
     
 
     private bool go = false;
     void Start()
     {
-        renderer = GetComponent<Renderer> ();   //renderer
+        //renderer = GetComponent<Renderer> ();   //renderer
         burn_default = burningMat.GetFloat("prop_burn");    //anfangswert burn    0.55
         dissolve_default = burningMat.GetFloat("prop_dissolve");    //anfangswert dissolve  0
         burn_amount = burn_default;     //aktiver burn wert
         dissolve_amount = dissolve_default;     //aktiver dissolve wert
+
+        foreach(Transform child in transform){
+            parts.Add(child);
+        }
+        renderer = new Renderer[parts.Count];   //as many renderers as parts
+        for(int i = 0; i < parts.Count; i++){
+            renderer[i] = parts[i].GetComponent<Renderer>();
+        }
+
+    /*-----------------------------
+
         object_color = renderer.material.color;
         //Debug.Log("color: " + object_color);
         burningMat.SetColor("_object_color", object_color);
+
+    */
         
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log(normal_tex);
         if(Input.GetKey("b")){
 
-            
-            Material[] mats = {renderer.material, burningMat};      //erstelle neues mat array mit old mat und burn mat
-            lastDefaultMat = renderer.material; //save old mat
+            foreach(Transform Part in parts){
+                
 
-            renderer.materials = mats;  //set new mats
+                object_tex = Part.GetComponent<Renderer>().material.GetTexture("_MainTex");
+                normal_tex = Part.GetComponent<Renderer>().material.GetTexture("_BumpMap");
+                metallic = Part.GetComponent<Renderer>().material.GetFloat("_Metallic");
+                smoothness = Part.GetComponent<Renderer>().material.GetFloat("_Smoothness");
+                //burningMat.mainTexture = object_tex;
+                burningMat.SetTexture("_object_tex", object_tex);
+                burningMat.SetTexture("_normal_tex", normal_tex);
+                burningMat.SetFloat("_metallic", metallic);
+                burningMat.SetFloat("_smoothness", smoothness);
 
-            burningMat.SetFloat("prop_dissolve", 0);
-            burn_amount = 0;
-            dissolve_amount = 0;
+                Material[] mats = {Part.GetComponent<Renderer>().material, burningMat};      //erstelle neues mat array mit old mat und burn mat
+                lastDefaultMat = Part.GetComponent<Renderer>().material; //save old mat
 
-            go = true;
+                Part.GetComponent<Renderer>().materials = mats;  //set new mats
+
+                burningMat.SetFloat("prop_dissolve", 0);
+                burn_amount = 0;
+                dissolve_amount = 0;
+                go = true;
+
+            }    
         }
 
         if(Input.GetKey("r")){
@@ -61,7 +95,7 @@ public class burn_script : MonoBehaviour
             dissolve_amount = dissolve_default;
 
             Material[] mats = {lastDefaultMat};
-            renderer.materials = mats;
+            //renderer.materials = mats;
 
             burningMat.SetFloat("prop_dissolve", dissolve_default);
             burn_amount = burn_default;
@@ -71,14 +105,20 @@ public class burn_script : MonoBehaviour
         if(go){
                 if(burn_amount < dissolve_threshold){   //burn bis threshold (0.75)
                     Material[] mats = {burningMat};
-                    renderer.materials = mats;
+                    foreach(Transform Part in parts){
+                        Part.GetComponent<Renderer>().materials = mats;
+                    }
+                    //renderer.materials = mats;
                     burn_amount += speed * Time.deltaTime;
                     burningMat.SetFloat("prop_burn", burn_amount);
             } 
             else{
                 if(x){
                     Material[] mats = {burningMat};
-                    renderer.materials = mats;
+                    foreach(Transform Part in parts){
+                        Part.GetComponent<Renderer>().materials = mats;
+                    }
+                    //renderer.materials = mats;
                     x = false;
                 }
                 dissolve_amount += dissolveSpeed * Time.deltaTime;
@@ -86,7 +126,10 @@ public class burn_script : MonoBehaviour
 
                 if(dissolve_amount > 1.1f){
                     Material[] mats = {};
-                    renderer.materials = mats;
+                    foreach(Transform Part in parts){
+                        Part.GetComponent<Renderer>().materials = mats;
+                    }
+                    //renderer.materials = mats;
                 }
             }
         }

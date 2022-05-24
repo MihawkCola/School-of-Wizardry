@@ -28,6 +28,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: bc34c8b5b537af642b7e3869a8a355b9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_d5803eee105a4a15b4bd04441a4addc2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +96,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 331276f94be82df4190745afe158374e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _normal_tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _object_tex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -136,9 +144,11 @@ Material:
     - _UVSec: 0
     - _Vanishing: 0
     - _ZWrite: 1
-    - prop_burn: 0.75014734
-    - prop_dissolve: 2.187386
-    - prop_distortion: 0.705
+    - _metallic: 0
+    - _smoothness: 0
+    - prop_burn: 0.75037265
+    - prop_dissolve: 16.113935
+    - prop_distortion: 0.525
     - prop_divide: 1.1
     - prop_heat: 0.683
     - prop_kontrast: 1
@@ -147,6 +157,6 @@ Material:
     - Vector2_4a99f72c446c4818a8607cff7457c7f4: {r: 0, g: 0.2, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _object_color: {r: 0.46226412, g: 0.29173103, b: 0, a: 1}
+    - _object_color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - prop_scrollspeed: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
