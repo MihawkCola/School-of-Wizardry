@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireballController : MonoBehaviour
 {
     //private BurnController burnController;
-    public Material burnMat;
+    //public Material burnMat;
 
     // Start is called before the first frame update
     void Start()
