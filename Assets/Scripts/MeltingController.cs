@@ -6,6 +6,7 @@ public class MeltingController : MonoBehaviour
 {
     private Material icewall;
     private float melting;
+    private Collider col;
     private float meltingthreshold = -3.0f;
     public float meltingspeed = 1; 
 
@@ -14,6 +15,7 @@ public class MeltingController : MonoBehaviour
     {
         icewall = GetComponent<Renderer>().material;
         melting = icewall.GetFloat("_melting");
+        col = GetComponent<Collider>();
     }
     // Update is called once per frame
     void Update()
@@ -22,5 +24,6 @@ public class MeltingController : MonoBehaviour
             melting = melting - (meltingspeed * Time.deltaTime);
         icewall.SetFloat("_melting", melting);
         }
+        col.enabled = false;
     }
 }

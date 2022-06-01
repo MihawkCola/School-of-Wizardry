@@ -6,7 +6,10 @@ public class FireballController : MonoBehaviour
 {
 
     public GameObject explosion_prefab;
+    public GameObject steam_prefab;
     private GameObject explosion;
+    private GameObject steam;
+    public float steamDuration = 2;
 
     void Start()
     {
@@ -38,10 +41,12 @@ public class FireballController : MonoBehaviour
 
         //melting wall
         if(other.gameObject.tag == "Melting") {
+            steam = Instantiate(steam_prefab, other.transform.position, Quaternion.identity);
+            Destroy(steam, steamDuration);
             other.gameObject.AddComponent<MeltingController>(); //add Melting Script
         }
 
         //Destroy firball, mit ruben besprechen
-        //transform.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
 }
