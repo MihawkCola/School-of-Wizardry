@@ -41,10 +41,10 @@ public class BurnController : MonoBehaviour
         burn_amount = burn_default;     //aktiver burn wert
         dissolve_amount = dissolve_default;     //aktiver dissolve wert
         
-        object_tex = GetComponent<Renderer>().material.GetTexture("_MainTex");
-        normal_tex = GetComponent<Renderer>().material.GetTexture("_BumpMap");
-        metallic = GetComponent<Renderer>().material.GetFloat("_Metallic");
-        smoothness = GetComponent<Renderer>().material.GetFloat("_Smoothness");
+        object_tex = renderer.material.GetTexture("_MainTex");
+        normal_tex = renderer.material.GetTexture("_BumpMap");
+        metallic = renderer.material.GetFloat("_Metallic");
+        smoothness = renderer.material.GetFloat("_Smoothness");
              
         burningMat.SetTexture("_object_tex", object_tex);
         burningMat.SetTexture("_normal_tex", normal_tex);
@@ -52,9 +52,9 @@ public class BurnController : MonoBehaviour
         burningMat.SetFloat("_smoothness", smoothness);
 
         Material mat = burningMat;      
-        lastDefaultMat = GetComponent<Renderer>().material; //save old mat
+        lastDefaultMat = renderer.material; //save old mat
 
-        GetComponent<Renderer>().material = mat;  //set new mats
+        renderer.material = mat;  //set new mats
 
         burningMat.SetFloat("prop_dissolve", 0);
         burn_amount = 0;

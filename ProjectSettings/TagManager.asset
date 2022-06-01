@@ -12,6 +12,7 @@ TagManager:
   - RightHandController
   - Kindle
   - Burnable
+  - Melting
   layers:
   - Default
   - TransparentFX
