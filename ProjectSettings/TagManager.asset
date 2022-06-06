@@ -13,6 +13,10 @@ TagManager:
   - TeleportKugel
   - Teleport
   - LeftHandObjectModel
+  - Burnable
+  - Kindle
+  - WoodBurn
+  - Melting
   layers:
   - Default
   - TransparentFX
