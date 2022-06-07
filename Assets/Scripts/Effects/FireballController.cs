@@ -46,7 +46,6 @@ public class FireballController : MonoBehaviour
         //burn on wood
         if(other.gameObject.tag == "WoodBurn") {
             woodBurn = Instantiate(flame_prefab, other.GetContact(0).point, Quaternion.identity);
-            woodBurn
             Destroy(woodBurn, burnDuration);
         }
 
