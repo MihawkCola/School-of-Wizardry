@@ -15071,6 +15071,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84d79ec66bc5856458e855ce724ab72a, type: 3}
+--- !u!1 &750253443 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3295320616744408869, guid: 2c835572f61275a4ca7006ca2dbf036d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1507039485}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &753733304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33248,6 +33254,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3295320616112934456, guid: 2c835572f61275a4ca7006ca2dbf036d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295320616196714358, guid: 2c835572f61275a4ca7006ca2dbf036d,
+        type: 3}
+      propertyPath: camObj
+      value: 
+      objectReference: {fileID: 750253443}
+    - target: {fileID: 3295320616196714358, guid: 2c835572f61275a4ca7006ca2dbf036d,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 300000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3295320616196714358, guid: 2c835572f61275a4ca7006ca2dbf036d,
+        type: 3}
+      propertyPath: velocityLimit
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3295320616987318486, guid: 2c835572f61275a4ca7006ca2dbf036d,
         type: 3}
       propertyPath: m_RootOrder
